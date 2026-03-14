@@ -12,6 +12,8 @@ class CartPage extends BasePage {
         this.productName       = page.locator(LOCATORS.productName);
         this.productPrice      = page.locator(LOCATORS.productPrice);
         this.cartQuantity      = page.locator(LOCATORS.cartQuantity);
+        this.burgerMenuBtn = page.locator(LOCATORS.burgerMenuBtn);
+        this.allItemsLink = page.locator(LOCATORS.allItemsLink);
         this.removeBtnPrefix   = LOCATORS.removeBtnPrefix;
     }
 
@@ -86,6 +88,10 @@ class CartPage extends BasePage {
 
     async continueShopping() {
         await this.clickElement(this.continueShoppingBtn);
+    }
+    async clickAllItemsLink(){
+        await this.clickElement(this.burgerMenuBtn);
+        await this.clickElement(this.allItemsLink);
     }
 }
 
