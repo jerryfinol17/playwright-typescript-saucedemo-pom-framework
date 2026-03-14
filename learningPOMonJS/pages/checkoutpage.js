@@ -1,4 +1,4 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './basepage.js';
 import { LOCATORS } from './config.js';
 
 class CheckoutPage extends BasePage {
@@ -9,7 +9,7 @@ class CheckoutPage extends BasePage {
         this.firstNameInput  = page.locator(LOCATORS.firstNameInput);
         this.lastNameInput   = page.locator(LOCATORS.lastNameInput);
         this.zipCodeInput    = page.locator(LOCATORS.zipCodeInput);
-        this.continueBtn     = page.locator(LOCATORS.continueBtn);
+        this.continueBtn     = page.locator(LOCATORS.continueButton);
         this.cancelBtn       = page.locator(LOCATORS.cancelBtn);
         this.errorMsg        = page.locator(LOCATORS.errorMsg);
 
@@ -136,4 +136,4 @@ class CheckoutPage extends BasePage {
     }
 }
 
-export default CheckoutPage;
+export { CheckoutPage}

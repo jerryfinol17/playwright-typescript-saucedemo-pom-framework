@@ -34,6 +34,7 @@ class BasePage {
         if(!current.includes(expectedSubstring)){
             throw new Error(message || `URL "${current}" does not contain "${expectedSubstring}"`);
         }
+        return current.includes(expectedSubstring);
     }
     async assertTextEquals(locator, expectedText){
         const loc = this.#getLocator(locator);
@@ -50,4 +51,4 @@ class BasePage {
         return loc.isVisible();
     }
 }
-export default BasePage;
+export {BasePage};

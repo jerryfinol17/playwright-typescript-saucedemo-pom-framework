@@ -1,4 +1,4 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './basepage.js';
 import { LOCATORS } from "./config.js";
 
 class InventoryPage extends BasePage {
@@ -140,7 +140,9 @@ class InventoryPage extends BasePage {
         }
         return result;
     }
+    async goToCart(){
+        await this.clickElement(this.cartBadge)
+    }
 }
 
-export default InventoryPage;
-
+export {InventoryPage}

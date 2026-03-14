@@ -79,7 +79,7 @@ export const LOCATORS = {
     backHomeBtn: '[data-test="back-to-products"]',
 };
 
-export const DEFAULT_CHECKOUT_DATA = {
+export const CHECKOUT_DATA = {
     valid: {
         firstName: 'Juan',
         lastName: 'Pérez',

@@ -1,4 +1,4 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './basepage.js';
 import { LOCATORS } from "./config.js";
 
 class CartPage extends BasePage {
@@ -89,4 +89,4 @@ class CartPage extends BasePage {
     }
 }
 
-export default CartPage;
+export { CartPage };

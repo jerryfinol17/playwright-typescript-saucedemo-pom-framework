@@ -1,4 +1,4 @@
-import {BasePage} from './BasePage';
+import {BasePage} from './basepage.js';
 import {LOCATORS} from "./config.js";
 
 class LoginPage extends BasePage {
@@ -42,4 +42,4 @@ class LoginPage extends BasePage {
     }
 }
 
-module.exports = LoginPage;
+export { LoginPage };
