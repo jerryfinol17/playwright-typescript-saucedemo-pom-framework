@@ -45,7 +45,7 @@ export const LOCATORS = {
     crossBurgerBtn: '#react-burger-cross-btn',
     aboutLink: '[data-test="about-sidebar-link"]',
     resetLink: '[data-test="reset-sidebar-link"]',
-    sortDropdown:'[data-test="product_sort_container"]',
+    sortDropdown:'.product_sort_container',
     productDescription: '[data-test="inventory-item-desc"]',
     addBtnPrefix: '[data-test^="add-to-cart-"]',
     cartLink: '[data-test="shopping-cart-link"]',

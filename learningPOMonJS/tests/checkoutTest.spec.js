@@ -54,7 +54,15 @@ test("Checkout Happy Path",async ({page}) => {
     await checkout.continueToOverview();
     const names = await checkout.getOverviewItemNames();
     expect(await names).toEqual(itemToAdd);
-    const expectedSubTotal = itemToAdd.reduce((sum,item) => sum + itemsPrices[item], 0 );
+    const expectedSubTotal = itemToAdd.reduce((sum, item) => {
+        const price = itemsPrices.get(item);
+
+        if (price === undefined) {
+            throw new Error(`Precio no encontrado para "${item}" en itemsPrices (Map)`);
+        }
+
+        return sum + price;
+    }, 0);
     expect(await checkout.getSubtotal()).toEqual(expectedSubTotal);
     const expectedTax = Number((expectedSubTotal * 0.08).toFixed(2));
     expect(await checkout.getTax()).toEqual(expectedTax);
@@ -136,16 +144,24 @@ test("Items on Overview are Correct", async ({page}) => {
     for (const name of itemsToAdd) {
         expect(name in overviewPrices,
             `Item '${name}' does not appear in Overview.`).toBe(true);
-        expect( name in inventoryPrices,
+        expect( inventoryPrices.has(name) ,
                 `Item '${name}' does not appear in Inventory (bug?).`).toBe(true);
         expect(
             overviewPrices[name],
             `Precio de '${name}' no coincide: inventory $${inventoryPrices[name]} vs overview $${overviewPrices[name]}`
-        ).toBeCloseTo(inventoryPrices[name], 3);
+        ).toBeCloseTo(inventoryPrices.get(name), 3);
     }
     const names = await checkout.getOverviewItemNames();
     expect(await names).toEqual(itemsToAdd);
-    const expectedSubTotal = itemsToAdd.reduce((sum,item) => sum + itemsPrices[item], 0 );
+    const expectedSubTotal = itemsToAdd.reduce((sum, item) => {
+        const price = itemsPrices.get(item);
+
+        if (price === undefined) {
+            throw new Error(`Precio no encontrado para "${item}" en itemsPrices (Map)`);
+        }
+
+        return sum + price;
+    }, 0);
     expect(await checkout.getSubtotal()).toEqual(expectedSubTotal);
     const expectedTax = Number((expectedSubTotal * 0.08).toFixed(2));
     expect(await checkout.getTax()).toEqual(expectedTax);

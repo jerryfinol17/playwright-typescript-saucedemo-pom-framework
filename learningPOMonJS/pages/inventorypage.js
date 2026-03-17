@@ -8,6 +8,7 @@ class InventoryPage extends BasePage {
         this.cartBadge         = page.locator(LOCATORS.cartBadge);
         this.cartLink         = page.locator(LOCATORS.cartLink);
         this.burgerMenuBtn     = page.locator(LOCATORS.burgerMenuBtn);
+        this.crossBurgerBtn = page.locator(LOCATORS.crossBurgerBtn);
         this.aboutLink         = page.locator(LOCATORS.aboutLink);
         this.resetLink         = page.locator(LOCATORS.resetLink);
         this.title             = page.locator(LOCATORS.title);
@@ -28,6 +29,11 @@ class InventoryPage extends BasePage {
         await this.clickElement(this.burgerMenuBtn);
         await this.clickElement(this.aboutLink);
         return this.assertCurrentUrlContain('saucelabs.com');
+    }
+    async resetApp(){
+        await this.clickElement(this.burgerMenuBtn);
+        await this.clickElement(this.resetLink);
+        await this.clickElement(this.crossBurgerBtn);
     }
 
     async isPrimaryHeaderVisible() {
@@ -128,18 +134,22 @@ class InventoryPage extends BasePage {
 
     async getInventoryItemsWithPrices() {
         const items = await this.productItem.all();
-        const result = {};
-        for (const item of items) {
+
+        const promises = items.map(async (item) => {
             const name = (await this.getText(item.locator(this.productName))).trim();
             const priceText = (await this.getText(item.locator(this.productPrice))).trim();
-            if (name && priceText) {
-                const price = parseFloat(priceText.replace('$', '').trim());
-                if (!isNaN(price)) {
-                    result[name] = price;
-                }
+            if (!name || !priceText) {
+                return null;
             }
-        }
-        return result;
+            const price = parseFloat(priceText.replace('$', '').trim());
+            if (isNaN(price)) {
+                return null;
+            }
+            return { name, price };
+        });
+        const rawResults = await Promise.all(promises);
+        const results = rawResults.filter(r => r !== null);
+        return new Map(results.map(r => [r.name, r.price]));
     }
     async goToCart(){
         await this.clickElement(this.cartLink)
