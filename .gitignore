@@ -1,0 +1,7 @@
+node_modules
+.idea
+.vscode
+videos/
+test-results/
+playwright-report/
+.env
