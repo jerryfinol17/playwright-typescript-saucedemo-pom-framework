@@ -18,19 +18,19 @@ aprendiendoJS/
 ├── firststepsonJS/          # Primeros pasos vanilla (navigate, fill, SauceDemo básico)
 ├── learningPOMonJS/         # Nivel POM completo
 │   ├── pages/
-│   │   ├── basepage.js
-│   │   ├── loginpage.js
-│   │   ├── inventorypage.js
-│   │   ├── cartpage.js
-│   │   ├── checkoutpage.js
-│   │   └── config.js          # ← datos, credenciales, locators
+│   │   ├── basePage.ts
+│   │   ├── loginPage.ts
+│   │   ├── inventoryPage.ts
+│   │   ├── cartPage.ts
+│   │   ├── checkoutPage.ts
+│   │   └── config.ts          # ← datos, credenciales, locators
 │   └── tests/
-│       ├── loginTest.spec.js
-│       ├── inventoryTest.spec.js  ← describe + beforeEach
-│       ├── cartTest.spec.js
-│       ├── checkoutTest.spec.js
-│       └── testE2E.spec.js
-├── playwright.config.js     # Config pro (html report, video, trace, slowMo)
+│       ├── loginTest.spec.ts
+│       ├── inventoryTest.spec.ts  ← describe + beforeEach
+│       ├── cartTest.spec.ts
+│       ├── checkoutTest.spec.ts
+│       └── testE2E.spec.ts
+├── playwright.config.ts     # Config pro (html report, video, trace, slowMo)
 ├── .gitignore               # Limpio y profesional
 └── package.json
 ```
@@ -45,7 +45,7 @@ npm install
 npx playwright test
 
 # 3. Correr solo un grupo
-npx playwright test inventoryTest.spec.js
+npx playwright test inventoryTest.spec.ts
 
 # 4. Ver reporte bonito
 npx playwright show-report

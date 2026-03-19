@@ -1,14 +1,19 @@
-export const BASE_URL = 'https://www.saucedemo.com/';
+export const BASE_URL: string = 'https://www.saucedemo.com/';
 
-export const CREDENTIALS = {
+export interface Credentials {
+    username: string;
+    password: string;
+}
+
+export const CREDENTIALS: Record<string, Credentials> = {
     standard: { username: 'standard_user', password: 'secret_sauce' },
-    lockedOut: { username: 'locked_out_user', password: 'secret_sauce' },      // nombres más descriptivos
+    lockedOut: { username: 'locked_out_user', password: 'secret_sauce' },
     problem: { username: 'problem_user', password: 'secret_sauce' },
     performanceGlitch: { username: 'performance_glitch_user', password: 'secret_sauce' },
     visual: { username: 'visual_user', password: 'secret_sauce' },
     error: { username: 'error_user', password: 'secret_sauce' },
 
-    // NEGATIVE CASES
+    // Negative cases
     invalidUser: { username: 'ElPePe', password: 'secret_sauce' },
     invalidPassword: { username: 'standard_user', password: 'QuesoConArroz' },
     blankUser: { username: '', password: 'secret_sauce' },
@@ -16,9 +21,8 @@ export const CREDENTIALS = {
     allBlank: { username: '', password: '' },
 };
 
-export const LOCATORS = {
-
-    //GENERAL LOCATORS
+export const LOCATORS: Record<string, string> = {
+    // GENERAL LOCATORS
     title: '[data-test="title"]',
     productItem: '.inventory_item',
     productName: '.inventory_item_name',
@@ -30,8 +34,7 @@ export const LOCATORS = {
     cartQuantity: '[data-test="item-quantity"]',
     cancelBtn: '[data-test="cancel"]',
 
-
-    //LOGIN / LOGOUT
+    // LOGIN / LOGOUT
     usernameInput: '[data-test="username"]',
     passwordInput: '[data-test="password"]',
     loginBtn: '[data-test="login-button"]',
@@ -39,31 +42,30 @@ export const LOCATORS = {
     burgerMenuBtn: '#react-burger-menu-btn',
     logoutLink: '[data-test="logout-sidebar-link"]',
 
-    //INVENTORY
+    // INVENTORY
     inventoryTitle: '.title',
     primaryHeader: '[data-test="primary-header"]',
     crossBurgerBtn: '#react-burger-cross-btn',
     aboutLink: '[data-test="about-sidebar-link"]',
     resetLink: '[data-test="reset-sidebar-link"]',
-    sortDropdown:'.product_sort_container',
+    sortDropdown: '.product_sort_container',
     productDescription: '[data-test="inventory-item-desc"]',
     addBtnPrefix: '[data-test^="add-to-cart-"]',
     cartLink: '[data-test="shopping-cart-link"]',
 
-    //CART
-    continueShoppingBtn:'[data-test="continue-shopping"]',
+    // CART
+    continueShoppingBtn: '[data-test="continue-shopping"]',
     checkoutBtn: '[data-test="checkout"]',
-    allItemsLink: '[data-test=inventory-sidebar-link]',
+    allItemsLink: '[data-test="inventory-sidebar-link"]',
 
-    //CHECKOUT
-
-          //Step one
+    // CHECKOUT
+    // Step one
     firstNameInput: '[data-test="firstName"]',
     lastNameInput: '[data-test="lastName"]',
     zipCodeInput: '[data-test="postalCode"]',
     continueButton: '[data-test="continue"]',
 
-         //Step two
+    // Step two
     paymentInfoLabel: '[data-test="payment-info-label"]',
     paymentInfoValue: '[data-test="payment-info-value"]',
     shippingInfoLabel: '[data-test="shipping-info-label"]',
@@ -74,40 +76,47 @@ export const LOCATORS = {
     totalLabel: '.summary_total_label',
     finishBtn: '[data-test="finish"]',
 
-        //Complete
+    // Complete
     completeHeader: '[data-test="complete-header"]',
     completeText: '[data-test="complete-text"]',
     backHomeBtn: '[data-test="back-to-products"]',
 };
 
-export const CHECKOUT_DATA = {
+export interface CheckoutData {
+    firstName: string;
+    lastName: string;
+    zipCode: string;
+    expectedError?: string;
+}
+
+export const CHECKOUT_DATA: Record<string, CheckoutData> = {
     valid: {
         firstName: 'Juan',
         lastName: 'Pérez',
         zipCode: 'C1425',
     },
-    invalidName:{
+    invalidName: {
         firstName: '',
         lastName: 'Perez',
         zipCode: 'C1425',
         expectedError: 'Error: First Name is required',
     },
-    invalidLastname:{
+    invalidLastname: {
         firstName: 'Juan',
-        lastName:'',
-        zipCode:'C1425',
+        lastName: '',
+        zipCode: 'C1425',
         expectedError: 'Error: Last Name is required',
     },
-    invalidZipCode:{
+    invalidZipCode: {
         firstName: 'Juan',
-        lastName:'Perez',
-        zipCode:'',
+        lastName: 'Perez',
+        zipCode: '',
         expectedError: 'Error: Postal Code is required',
     },
-    allBlakCheckout:{
+    allBlankCheckout: {
         firstName: '',
-        lastName:'',
-        zipCode:'',
+        lastName: '',
+        zipCode: '',
         expectedError: 'Error: First Name is required',
-    }
+    },
 };
