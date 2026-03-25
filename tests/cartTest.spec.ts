@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test'
+import { test, expect } from '../fixtures/coverageFixture';
 import {LoginPage} from "../pages/loginPage";
 import {InventoryPage} from "../pages/inventoryPage";
 import {CartPage} from "../pages/cartPage";

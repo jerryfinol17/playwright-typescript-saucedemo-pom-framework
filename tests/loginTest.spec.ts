@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/coverageFixture';
 import { LoginPage } from '../pages/loginPage';
-import { BASE_URL, CREDENTIALS as cred } from '../pages/config';
+import {BASE_URL, CREDENTIALS, CREDENTIALS as cred} from '../pages/config';
 interface PositiveUser {
     key: keyof typeof cred;
     shouldMeasureTime: boolean;
@@ -96,3 +96,17 @@ for (const { key: userKey, expectedError } of negativeUsers) {
         ).toContain(expectedError.toLowerCase());
     });
 }
+test("Logout and clean fields", async ({ page }) => {
+    const creds = CREDENTIALS;
+    const login = new LoginPage(page);
+    await page.goto(BASE_URL);
+    await page.waitForLoadState('networkidle');
+    await expect(login.isOnBasePage()).resolves.toBe(true);
+    await login.login(creds.lockedOut.username, creds.lockedOut.password);
+    await expect(login.isErrorVisible()).resolves.toBe(true);
+    await login.cleanLoginFields()
+    await login.login(creds.standard.username, creds.standard.password);
+    await expect(login.isLoginOk()).resolves.toBe(true);
+    await login.logout()
+    await expect(login.isOnBasePage()).resolves.toBe(true);
+})

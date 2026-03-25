@@ -5,18 +5,24 @@
   "main": "firststepsonJS/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:coverage": "playwright test && c8 report --reporter=text --reporter=html"
   },
   "private": true,
-  "dependencies": {
-    "playwright": "^1.58.2"
-  },
   "devDependencies": {
+    "@bgotink/playwright-coverage": "^0.3.2",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
     "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@typescript-eslint/parser": "^8.57.1",
+    "@vitest/coverage-v8": "^4.1.1",
+    "c8": "^11.0.0",
+    "istanbul-lib-coverage": "^3.2.2",
+    "monocart-reporter": "^2.10.0",
+    "playwright": "^1.58.2",
+    "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "v8-to-istanbul": "^9.3.0"
   }
 }

@@ -9,8 +9,11 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "rootDir": "./",
-    "types": ["node", "@playwright/test"]
+    "types": ["node", "@playwright/test"],
+    "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources": true
   },
-  "include": ["learningPOMonJS/**/*.ts", "playwright.config.ts"],
+  "include": ["aprendiendoJS/**/*.ts", "playwright.config.ts"],
   "exclude": ["node_modules", "dist", "videos", "test-results", "playwright-report"]
 }
